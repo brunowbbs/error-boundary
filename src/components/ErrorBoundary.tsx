@@ -1,6 +1,9 @@
 import { Component } from "react";
 
-interface ErrorBoundaryProps {}
+interface ErrorBoundaryProps {
+  component?: string;
+}
+
 interface ErrorBoundaryState {
   hasError: boolean;
   error?: {
@@ -25,7 +28,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Algo deu errado. {this.state.error?.message}</h1>;
+      return <h1>Erro ao renderizar {this.props.component || "componente"}</h1>;
     }
 
     return this.props.children;
